@@ -6,6 +6,7 @@
     "type": "git",
     "url": "https://github.com/yedaodao/path-toolkit.git"
   },
+  "main": "./build/path-tookit.js",
   "author": "yedaodao",
   "license": "MIT",
   "scripts": {

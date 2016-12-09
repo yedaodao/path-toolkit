@@ -21,5 +21,7 @@ function resolveParams() {
 }
 
 module.exports = {
-    join: posix.join
+    join: posix.join,
+    addHeadSlash: posix.addHeadSlash,
+    addTailSlash: posix.addTailSlash
 };

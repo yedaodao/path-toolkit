@@ -176,4 +176,5 @@ jspm_packages
 
 # Custom
 .idea
+build
 

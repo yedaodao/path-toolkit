@@ -81,7 +81,62 @@ test('posix.join()', async t=> {
     });
     t.is(posix.join(''), '.');
     t.is(posix.join('', ''), '.');
+    t.is(posix.join('', '/'), '/');
+    t.is(posix.join('./'), './');
     t.is(posix.join('/', 'a'), '/a');
+    t.is(posix.join('./', '/'), './');
     t.is(posix.join('./', 'a'), 'a');
     t.is(posix.join('/a', '/b', '/c'), '/a/b/c');
+    t.is(posix.join('a', 'b', 'c'), 'a/b/c');
+    t.is(posix.join('./a', '../b', 'c'), 'b/c');
+    t.is(posix.join('../a', '../b', 'c'), '../b/c');
+    t.is(posix.join('/a', '..', '..', 'c'), '/c');
+    t.is(posix.join('./', '/a', 'b'), 'a/b');
 });
+test('posix.toAbsolute()', async t=> {
+    t.throws(()=> {
+        posix.toAbsolute(null);
+    });
+    t.is(posix.toAbsolute(''), '/');
+    t.is(posix.toAbsolute('/'), '/');
+    t.is(posix.toAbsolute('./'), '/');
+    t.is(posix.toAbsolute('/abc/'), '/abc/');
+    t.is(posix.toAbsolute('abc/'), '/abc/');
+    t.is(posix.toAbsolute('a/../c'), '/c');
+});
+test('posix.addTailSlash()', async t=> {
+    t.throws(()=> {
+        posix.addTailSlash(null);
+    });
+    t.is(posix.addTailSlash(''), './');
+    t.is(posix.addTailSlash('/'), '/');
+    t.is(posix.addTailSlash('./'), './');
+    t.is(posix.addTailSlash('/abc/'), '/abc/');
+    t.is(posix.addTailSlash('/abc'), '/abc/');
+    t.is(posix.addTailSlash('a/../c'), 'c/');
+});
+test('posix.toRelative()', async t=> {
+    t.throws(()=> {
+        posix.toRelative(null);
+    });
+    t.is(posix.toRelative(''), './');
+    t.is(posix.toRelative('/'), './');
+    t.is(posix.toRelative('./'), './');
+    t.is(posix.toRelative('/abc/'), 'abc/');
+    t.is(posix.toRelative('/abc'), 'abc');
+    t.is(posix.toRelative('/a/../c'), 'c');
+});
+test('posix.removeTailSlash()', async t=> {
+    t.throws(()=> {
+        posix.removeTailSlash(null);
+    });
+    t.is(posix.removeTailSlash(''), '.');
+    t.is(posix.removeTailSlash('/'), '/');
+    t.is(posix.removeTailSlash('./'), '.');
+    t.is(posix.removeTailSlash('/./'), '/');
+    t.is(posix.removeTailSlash('../'), '..');
+    t.is(posix.removeTailSlash('/abc/'), '/abc');
+    t.is(posix.removeTailSlash('/abc'), '/abc');
+    t.is(posix.removeTailSlash('/a/../c/'), '/c');
+});
+

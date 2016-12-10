@@ -14,7 +14,7 @@
     "test": "ava ./test"
   },
   "devDependencies": {
-    "ava": "^0.3.0",
+    "ava": "^0.17.0",
     "webpack": "^1.14.0"
   }
 }

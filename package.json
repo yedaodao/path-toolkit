@@ -6,11 +6,12 @@
     "type": "git",
     "url": "https://github.com/yedaodao/path-toolkit.git"
   },
-  "main": "./build/path-tookit.js",
+  "main": "./dist/path-tookit.js",
   "author": "yedaodao",
   "license": "MIT",
   "scripts": {
-    "build": "webpack"
+    "dist": "webpack",
+    "test": ""
   },
   "devDependencies": {
     "webpack": "^1.14.0"

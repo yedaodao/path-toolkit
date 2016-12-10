@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "dist": "webpack",
-    "test": ""
+    "test": "ava ./test"
   },
   "devDependencies": {
     "ava": "^0.3.0",

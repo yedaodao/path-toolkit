@@ -140,3 +140,19 @@ test('posix.removeTailSlash()', async t=> {
     t.is(posix.removeTailSlash('/a/../c/'), '/c');
 });
 
+test('util.toHttpPath()', async t=> {
+    t.throws(()=> {
+        util.toHttpPath(null);
+    });
+    t.is(util.toHttpPath(posix.removeTailSlash('')), '');
+    t.is(util.toHttpPath(posix.removeTailSlash('/')), '');
+    t.is(util.toHttpPath(posix.removeTailSlash('./')), '');
+    t.is(util.toHttpPath(posix.removeTailSlash('/./')), '');
+    t.is(util.toHttpPath(posix.removeTailSlash('../')), '');
+    t.is(util.toHttpPath(posix.removeTailSlash('abc/')), 'abc');
+    t.is(util.toHttpPath(posix.toRelative('')), '');
+    t.is(util.toHttpPath(posix.toRelative('./')), '');
+    t.is(util.toHttpPath(posix.toRelative('/')), '');
+    t.is(util.toHttpPath(posix.toRelative('/abc')), 'abc');
+});
+

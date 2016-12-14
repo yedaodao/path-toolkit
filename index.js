@@ -3,9 +3,9 @@ var posix = require('./lib/posix'),
 
 module.exports = {
     join: posix.join,
-    addHeadSlash: posix.addHeadSlash,
-    deleteHeadSlash: posix.deleteHeadSlash,
+    toAbsolute: posix.toAbsolute,
+    toRelative: posix.toRelative,
     addTailSlash: posix.addTailSlash,
-    deleteTailSlash: posix.deleteTailSlash,
+    removeTailSlash: posix.removeTailSlash,
     toHttpPath: util.toHttpPath
 };

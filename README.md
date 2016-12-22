@@ -1,5 +1,7 @@
 # path-toolkit
 
+[![Coverage Status](https://coveralls.io/repos/github/yedaodao/path-toolkit/badge.svg?branch=master)](https://coveralls.io/github/yedaodao/path-toolkit?branch=master)
+
 A toolkit for path can run in browsers and node runtime. But I think it is proper for javascript codes in browsers because of the module called [path](https://nodejs.org/dist/latest-v6.x/docs/api/path.html) in Node.js.
 
 The lib aim to handle path in the same logic between browser and backend.

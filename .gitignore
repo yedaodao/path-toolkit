@@ -177,4 +177,6 @@ jspm_packages
 # Custom
 .idea
 build
+coverage
+.nyc_output
 

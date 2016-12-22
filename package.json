@@ -11,10 +11,11 @@
   "license": "MIT",
   "scripts": {
     "dist": "webpack",
-    "test": "ava ./test"
+    "test": "nyc ava ./test"
   },
   "devDependencies": {
     "ava": "^0.17.0",
+    "nyc": "^10.0.0",
     "webpack": "^1.14.0"
   }
 }

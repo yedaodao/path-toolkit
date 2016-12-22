@@ -36,9 +36,6 @@ pathTookit.removeTailSlash('') // console .
 pathTookit.removeTailSlash('../') // console ..
 pathTookit.removeTailSlash('/a/../c/') // console /c
 
-pathTookit.toHttpPath(pathTookit.toAbsolute('')) // ''
-pathTookit.toHttpPath(pathTookit.removeTailSlash('..')) // ''
-
 ```
 
 ### Browser without AMD/CMD/UMD
@@ -83,15 +80,6 @@ Add '/' to the end of the path and this method will not change the mean of the p
 Remove '/' in the end of the path and this method will not change the mean of the path. e.g., '/a/b/../c/' will be converted to '/a/c'. Note that: 
 
 - '' to '.'
-
-### toHttpPath(path)
-
-Use this method after using the method above. It will convert the special path string to http path. Like following:
-
-- '.' to ''
-- '..' to ''
-- '/' to ''
-- './' to ''
 
 ## Feedback  
 If you have any questions or requirements, use [Issues](https://github.com/yedaodao/path-toolkit/issues).

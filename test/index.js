@@ -4,6 +4,7 @@ import assert from '../lib/assert';
 import util from '../lib/util';
 import format from '../lib/format';
 import posix from '../lib/posix';
+import pathTookit from '../index';
 
 test('assert.assertString()', async t=> {
     t.notThrows(()=> {
@@ -140,19 +141,15 @@ test('posix.removeTailSlash()', async t=> {
     t.is(posix.removeTailSlash('/a/../c/'), '/c');
 });
 
-test('util.toHttpPath()', async t=> {
-    t.throws(()=> {
-        util.toHttpPath(null);
-    });
-    t.is(util.toHttpPath(posix.removeTailSlash('')), '');
-    t.is(util.toHttpPath(posix.removeTailSlash('/')), '');
-    t.is(util.toHttpPath(posix.removeTailSlash('./')), '');
-    t.is(util.toHttpPath(posix.removeTailSlash('/./')), '');
-    t.is(util.toHttpPath(posix.removeTailSlash('../')), '');
-    t.is(util.toHttpPath(posix.removeTailSlash('abc/')), 'abc');
-    t.is(util.toHttpPath(posix.toRelative('')), '');
-    t.is(util.toHttpPath(posix.toRelative('./')), '');
-    t.is(util.toHttpPath(posix.toRelative('/')), '');
-    t.is(util.toHttpPath(posix.toRelative('/abc')), 'abc');
+test('integration', async t=> {
+    t.is(typeof pathTookit.join, 'function');
+    t.is(typeof pathTookit.toAbsolute, 'function');
+    t.is(typeof pathTookit.toRelative, 'function');
+    t.is(typeof pathTookit.addTailSlash, 'function');
+    t.is(typeof pathTookit.removeTailSlash, 'function');
+    t.is(pathTookit.join('/a', '/b', 'c', '..', 'd/e'), '/a/b/d/e');
+    t.is(pathTookit.join('/a', '/', '/', '..'), '/');
+    t.is(pathTookit.join('../', '/a', 'b'), '../a/b');
+    t.is(pathTookit.join('./', '/a', 'b'), 'a/b');
+    t.is(pathTookit.toAbsolute('..'), '/');
 });
-

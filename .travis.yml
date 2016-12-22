@@ -6,6 +6,6 @@ install:
   - npm install -g coveralls nyc
 script:
   - nyc npm test
-after_sucess:
+after_success:
   - nyc report --reporter=text-lcov | coveralls
 

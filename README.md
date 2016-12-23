@@ -23,22 +23,14 @@ pathTookit.join('/a', 'b', 'c') // console /a/b/c
 pathTookit.join('/a', '..', 'c') // console /c
 pathTookit.join('./', '/a', 'b') // console a/b
 
-pathTookit.toAbsolute('') // console /
-pathTookit.toAbsolute('abc/') // console /abc/
-pathTookit.toAbsolute('a/../c') // console /c
+pathTookit.normalize('a/b/../c') // console a/c
+pathTookit.normalize('//a//b//c//')  // console /a/b/c/
 
-pathTookit.addTailSlash('') // console ./
-pathTookit.addTailSlash('/abc') // console /abc/
-pathTookit.addTailSlash('a/../c') // console c/
+pathTookit.isAbsolute('/abc/') // console true
+pathTookit.isAbsolute('./') // console false
 
-pathTookit.toRelative('/') // console ./
-pathTookit.toRelative('/abc/') // console abc/
-pathTookit.toRelative('/a/../c') //console c
-
-pathTookit.removeTailSlash('') // console .
-pathTookit.removeTailSlash('../') // console ..
-pathTookit.removeTailSlash('/a/../c/') // console /c
-
+pathTookit.existTailSlash('/a/b/c/') // console true
+pathTookit.existTailSlash('/a/b/c') // console false
 ```
 
 ### Browser without AMD/CMD/UMD
@@ -60,29 +52,17 @@ Join path segments to a path string. Note that:
 - The './' which strings start with will be removed like './a/b/c' to 'a/b/c'
 - Strings start with '../' will be regard as relative path
 
-### toAbsolute(path)
+### normalize(path)
 
-Convert the path to absolute path. e.g., './a/b/../c' will be converted to '/a/c'. Note that: 	
+Normalizes the path param. It can resolve '.' and '..' and remove extra slashes. The logic about resolving empty strings, './', '../' is same as **join()** method.
 
-- '' to '/'
+### isAbsolute(path)
 
-### toRelative(path)
+Judge if the path param is a absolute path.
 
-Convert the path to relative path. e.g., '/a/b/../c' will be converted to 'a/c'. Note that: 	
+### existTailSlash(path)
 
-- '' to './'
-
-### addTailSlash(path)
-
-Add '/' to the end of the path and this method will not change the mean of the path. e.g., '/a/b/../c' will be converted to '/a/c/'. Note that: 
-
-- '' to './'
-
-### removeTailSlash(path)
-
-Remove '/' in the end of the path and this method will not change the mean of the path. e.g., '/a/b/../c/' will be converted to '/a/c'. Note that: 
-
-- '' to '.'
+Judge if there is a '/' at the end of the path param.
 
 ## Feedback  
 If you have any questions or requirements, use [Issues](https://github.com/yedaodao/path-toolkit/issues).
